@@ -1,3 +1,20 @@
+{
+  Exercise: Office Expenses – Selection Sort
+
+  Description:
+  The program manages expense payment information for office units in a building.
+  It reads office records (ID code, owner DNI, expense value) into an array
+  and sorts them using the selection sort algorithm based on the office ID code.
+
+  Concepts applied:
+  - Records
+  - Arrays
+  - Modular programming
+  - Selection sort algorithm
+
+  Language: Pascal
+}
+
 program Ejercicio2;
 
 Const
@@ -78,3 +95,4 @@ begin
 	writeln (' - Vector ordenado por codigo - ');
 	imprimirVector (v, dimL);
 end.
+
