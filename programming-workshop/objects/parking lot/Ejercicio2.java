@@ -8,12 +8,12 @@ public class Ejercicio2 {
     public static void main(String[] args) {
         
         Estacionamiento e = new Estacionamiento ("Cars", "Santa fe 1560", "9:30", "21:30", 3, 3);
-        Auto a1 = new Auto ("Camila de la Roza", "TYU345");
-        Auto a2 = new Auto ("Santiago Logioco", "UIY567");
-        Auto a3 = new Auto ("Sonia Rodriguez", "TSG563");
-        Auto a4 = new Auto ("Sol Ormaechea", "UHJ237");
-        Auto a5 = new Auto ("Juan Pablo Ranzatto", "HJW223");
-        Auto a6 = new Auto ("Ignacio de la Roza", "ITM410");
+        Auto a1 = new Auto ("Camila Rodriguez", "TYU345");
+        Auto a2 = new Auto ("Santino Díaz", "UIY567");
+        Auto a3 = new Auto ("María Rodriguez", "TSG563");
+        Auto a4 = new Auto ("Sol Gomez", "UHJ237");
+        Auto a5 = new Auto ("Juan Pablo Gimenez", "HJW223");
+        Auto a6 = new Auto ("Ignacio Rodriguez", "ITM410");
         
         e.registrarAuto(a1, 2, 3);
         e.registrarAuto (a2, 1, 3);
