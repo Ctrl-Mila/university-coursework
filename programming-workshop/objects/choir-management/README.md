@@ -27,5 +27,7 @@ There are two types of choirs:
 - `Coro`: abstract base class for choirs
 - `Semicircular`: represents a semicircular choir
 - `Hileras`: represents a choir organized in rows
+- `Persona`: base class for Corista and Director
+- `Director`: represents the choir director
 - `Corista`: represents a singer
 - `Ejercicio4`: main program that tests the system
