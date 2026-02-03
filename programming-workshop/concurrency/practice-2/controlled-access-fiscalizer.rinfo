@@ -1,0 +1,154 @@
+{------------------------------------------------------------------------------
+ Ejercicio: Acceso controlado a un área con robot fiscalizador
+
+ Este programa modela un sistema concurrente en el que un robot fiscalizador
+ controla el acceso de varios robots recolectores a un área restringida
+ del entorno.
+
+ Cuatro robots recolectores solicitan autorización para ingresar a un
+ cuadrante específico de la ciudad. En cada acceso, el robot fiscalizador
+ habilita a un único robot de manera aleatoria. El robot autorizado se
+ desplaza a una esquina aleatoria dentro del área, recoge todas las flores
+ y papeles presentes, y luego regresa a su posición inicial.
+
+ El robot fiscalizador coordina un total de 10 accesos al área compartida.
+ Una vez finalizados todos los accesos, determina cuál fue el robot que
+ recolectó la mayor cantidad total de elementos y le indica que se posicione
+ en una esquina final determinada.
+
+ Este ejercicio pone en práctica los siguientes conceptos:
+ - Pasaje de mensajes entre robots
+ - Coordinación centralizada mediante un fiscalizador
+ - Control de acceso a recursos compartidos
+ - Sincronización entre procesos concurrentes
+ - Acumulación y comparación de resultados parciales
+
+------------------------------------------------------------------------------}
+
+programa ejercicio4
+procesos
+  proceso juntar (ES f : numero; ES p : numero) 
+  comenzar
+    mientras HayFlorEnLaEsquina
+      tomarFlor
+      f := f + 1
+    mientras HayPapelEnLaEsquina
+      tomarPapel
+      p := p + 1
+  fin
+areas
+  ciudad: AreaC (1,1,100,1)
+  a: AreaPC (25,25,75,75)
+robots
+  robot tipo1
+  variables
+    id, av, ca, cant, avIni, caIni, fp, f, p : numero
+    termino, ganador : boolean
+  comenzar
+    avIni := PosAv
+    caIni := PosCa
+    f := 0
+    p := 0
+    RecibirMensaje (termino,fisc)
+    mientras (termino = F)
+      RecibirMensaje (id,fisc)
+      Random (av,25,75)
+      Random (ca,25,75)
+      Pos (av,ca)
+      juntar (f,p)
+      Pos (avIni, caIni)
+      EnviarMensaje (id,fisc) 
+      RecibirMensaje (termino,fisc)
+    fp := f + p
+    EnviarMensaje (id,fisc)
+    EnviarMensaje (fp,fisc)
+    RecibirMensaje (ganador,fisc)
+    si (ganador)
+      Pos (50,50)
+  fin
+  robot tipo2
+  variables
+    r, fp, max, id : numero
+  comenzar
+    repetir 10
+      Random (r,1,4)
+      si (r = 1)
+        EnviarMensaje (F,r1)
+        EnviarMensaje (r,r1)
+        RecibirMensaje (r,r1)
+      sino
+        si (r = 2)
+          EnviarMensaje (F,r2)
+          EnviarMensaje (r,r2)
+          RecibirMensaje (r,r2)
+        sino
+          si (r = 3)
+            EnviarMensaje (F,r3)
+            EnviarMensaje (r,r3)
+            RecibirMensaje (r,r3)
+          sino
+            EnviarMensaje (F,r4)
+            EnviarMensaje (r,r4)
+            RecibirMensaje (r,r4)
+    EnviarMensaje (V,r1)
+    EnviarMensaje (V,r2)
+    EnviarMensaje (V,r3)
+    EnviarMensaje (V,r4)
+    max := -1
+    repetir 4
+      RecibirMensaje (id,*)
+      si (id = 1)
+        RecibirMensaje (fp,r1)
+      sino
+        si (id = 2)
+          RecibirMensaje (fp,r2)
+        sino 
+          si (id = 3)
+            RecibirMensaje (fp,r3)
+          sino
+            RecibirMensaje (fp,r4)
+      si (fp > max)
+        max := fp
+        r := id
+    si (r = 1)
+      EnviarMensaje (V,r1)
+      EnviarMensaje (F,r2)
+      EnviarMensaje (F,r3)
+      EnviarMensaje (F,r4)
+    sino
+      si (r = 2)
+        EnviarMensaje (F,r1)
+        EnviarMensaje (V,r2)
+        EnviarMensaje (F,r3)
+        EnviarMensaje (F,r4)
+      sino
+        si (r = 3)
+          EnviarMensaje (F,r1)
+          EnviarMensaje (F,r2)
+          EnviarMensaje (V,r3)
+          EnviarMensaje (F,r4)
+        sino
+          EnviarMensaje (F,r1)
+          EnviarMensaje (F,r2)
+          EnviarMensaje (F,r3)
+          EnviarMensaje (V,r4)
+  fin
+variables
+  r1, r2, r3, r4: tipo1
+  fisc: tipo2
+comenzar
+  AsignarArea (r1,a)
+  AsignarArea (r2,a)
+  AsignarArea (r3,a)
+  AsignarArea (r4,a)
+  AsignarArea (r1,ciudad)
+  AsignarArea (r2,ciudad)
+  AsignarArea (r3,ciudad)
+  AsignarArea (r4,ciudad)
+  AsignarArea (fisc,ciudad)
+  Iniciar(r1,25,1)
+  Iniciar(r2,30,1)
+  Iniciar(r3,35,1)
+  Iniciar (r4,40,1)
+  Iniciar(fisc,1,1)
+fin
