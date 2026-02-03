@@ -1,0 +1,104 @@
+{----------------------------------------------------------------------------
+Ejercicio: Clientes y Servidor
+
+Este ejercicio implementa el modelo de concurrencia Cliente–Servidor.
+Existe un robot Servidor que provee flores a tres robots Clientes.
+
+Cada Cliente solicita al Servidor que deposite una cantidad aleatoria de flores
+en la esquina siguiente a su posición actual. Una vez que el Servidor realiza
+la entrega, el Cliente recoge las flores y las deposita a lo largo de su avenida.
+
+El proceso finaliza cuando todos los robots Clientes completan su recorrido.
+El ejercicio utiliza pasaje de mensajes para la comunicación y coordinación
+entre los robots, mostrando un ejemplo clásico de arquitectura Cliente–Servidor.
+------------------------------------------------------------------------------}
+ 
+programa ejercicio1
+procesos
+  proceso depositar (E cant: numero)
+  comenzar
+    repetir cant
+      depositarFlor
+  fin
+  proceso server (E cant: numero; E id: numero; E ca: numero)
+  comenzar
+    Pos (id, ca)
+    depositar (cant)
+    Pos (100,100)
+  fin
+areas
+  cli: AreaC (1,1,3,100)
+  ser: AreaP (100,100,100,100)
+robots
+  robot cliente
+  variables
+    id, av, ca, cant, ca1: numero
+    notermine : boolean
+  comenzar
+    id := PosAv
+    notermine := V
+    mientras (notermine)
+      EnviarMensaje (id,s)
+      si (PosCa <> 100)
+        Random (cant,1,4)
+        EnviarMensaje (cant,s)
+        ca := PosCa + 1
+        EnviarMensaje (ca,s)
+        RecibirMensaje (id,s)
+        mover
+        repetir cant
+          tomarFlor
+        Pos (id,PosCa - 1)
+        mientras ((HayFlorEnLaBolsa) & (PosCa <> 100))
+          depositarFlor
+          mover
+        si (PosCa = 100) & (HayFlorEnLaBolsa)
+          depositarFlor
+      sino
+        cant := 0
+        EnviarMensaje (cant,s)
+        notermine := F
+  fin
+  robot servidor
+  variables
+    id, cant, ca, termino: numero
+  comenzar
+    termino := 0
+    mientras (termino < 3)
+      RecibirMensaje (id,*)
+      si (id = 1)
+        RecibirMensaje (cant,r1)
+        si (cant <> 0)
+          RecibirMensaje (ca,r1)
+          server (cant,id,ca)
+          EnviarMensaje (id,r1)
+      sino
+        si (id = 2)
+          RecibirMensaje (cant,r2)
+          si (cant <> 0)
+            RecibirMensaje (ca,r2)
+            server (cant,id,ca)
+            EnviarMensaje (id,r2)
+        sino
+          RecibirMensaje (cant,r3)
+          si (cant <> 0)
+            RecibirMensaje (ca,r3)
+            server (cant,id,ca)
+            EnviarMensaje (id,r3)
+      si (cant = 0)
+        termino := termino + 1
+  fin
+variables
+  r1, r2, r3: cliente
+  s: servidor
+comenzar
+  AsignarArea (r1,cli)
+  AsignarArea (r2,cli)
+  AsignarArea (r3,cli)
+  AsignarArea (s,ser)
+  AsignarArea (s,cli)
+  Iniciar (r1,1,1)
+  Iniciar (r2,2,1)
+  Iniciar (r3,3,1)
+  Iniciar (s,100,100)
+fin
