@@ -1,6 +1,6 @@
 # Concurrency
 
-This folder contains exercises and practices related to **concurrent programming** developed during the Concurrency module.
+This folder contains selected exercises and practices related to **concurrent programming** developed during the Concurrency module.
 
 The goal of this module is to progressively introduce and apply core concurrency concepts, starting from basic notions and advancing toward classical synchronization models used in real-world problems.
 
@@ -23,8 +23,6 @@ The practices are organized in increasing order of complexity and cover the foll
 Each practice is stored in its own folder and includes:
 - The source files corresponding to the exercises
 - A brief README explaining the objective of the practice and the concepts involved
-
-While all practices are part of the learning process, **Practices 4 and 5** contain the most complete and representative solutions, applying advanced synchronization techniques and classical concurrency models.
 
 ## Purpose
 
