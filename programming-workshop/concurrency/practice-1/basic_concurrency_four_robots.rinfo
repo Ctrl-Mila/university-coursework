@@ -1,0 +1,97 @@
+{ 
+Práctica 1 – Concurrencia básica (R-Info / CMRE)
+
+Este programa implementa una solución concurrente utilizando cuatro robots
+que realizan tareas de limpieza en distintas calles y avenidas de la ciudad.
+
+Cada robot ejecuta su comportamiento de forma independiente y simultánea,
+sin necesidad de sincronización explícita ni pasaje de mensajes.
+
+Objetivos del ejercicio:
+- Comprender el concepto de concurrencia.
+- Ejecutar múltiples robots en paralelo.
+- Modularizar comportamientos mediante procesos reutilizables.
+}
+
+programa ejercicio5
+procesos
+  proceso juntarFlores (ES f : numero)
+  comenzar
+    mientras HayFlorEnLaEsquina
+      tomarFlor
+      f := f + 1
+  fin
+  proceso juntarPapeles (ES p : numero)
+  comenzar
+    mientras HayPapelEnLaEsquina
+      tomarPapel
+      p := p + 1
+  fin
+  proceso recorrer (E rep : numero)
+  variables
+    f : numero
+  comenzar
+    f := 0
+    repetir rep
+      juntarFlores (f)
+      mover
+    juntarFlores (f)
+    si (f <> 0)
+      repetir f
+        depositarFlor
+  fin
+  proceso recorrer2 (E rep : numero)
+  variables
+    p : numero
+  comenzar
+    p := 0
+    repetir rep
+      juntarPapeles (p)
+      mover
+    juntarPapeles (p)
+    Pos (PosAv, PosCa - rep)
+    si (p <> 0)
+      repetir p
+        depositarPapel
+  fin
+areas
+  ciudad: AreaC (1,1,100,100)
+robots
+  robot tipo1
+  variables
+    rep : numero
+  comenzar
+    derecha
+    si (PosCa = 75)
+      rep := 14
+    sino
+      rep := 29
+    recorrer (rep)
+    Pos (PosAv - rep, PosCa + 5)
+    recorrer (rep)
+  fin
+  robot tipo2
+  variables
+    rep: numero
+  comenzar
+    si (PosAv = 10)
+      rep := 9
+    sino
+      rep := 19
+    recorrer2 (rep)
+    Pos (PosAv + 5, PosCa)
+    recorrer2 (rep)
+  fin
+variables
+  r1,r3: tipo1
+  r2,r4: tipo2
+comenzar
+  AsignarArea (r1,ciudad)
+  AsignarArea (r2,ciudad)
+  AsignarArea (r3,ciudad)
+  AsignarArea (r4,ciudad)
+  Iniciar (r1,1,75)
+  Iniciar (r2,75,80)
+  Iniciar (r3,70,10)
+  Iniciar (r4,10,1)
+fin
