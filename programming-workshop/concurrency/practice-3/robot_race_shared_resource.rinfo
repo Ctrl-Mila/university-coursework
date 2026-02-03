@@ -1,0 +1,108 @@
+{------------------------------------------------------------------------------
+Ejercicio – Práctica 3 (Concurrencia)
+
+Cuatro robots compiten en una carrera avanzando por distintas avenidas.
+Para poder avanzar, cada robot debe obtener un papel desde una fuente compartida
+ubicada en la esquina (11,11). El acceso a dicha esquina se realiza de manera
+exclusiva mediante bloqueo y liberación del recurso, evitando conflictos entre
+robots concurrentes.
+
+Cada robot deposita el papel en su esquina actual y avanza un paso. La carrera
+finaliza cuando la fuente se queda sin papeles o cuando un robot completa su
+avenida. Al finalizar, cada robot informa al robot coordinador hasta dónde llegó,
+y este determina cuál fue el robot ganador.
+
+Este ejercicio pone en práctica:
+- Concurrencia real entre múltiples robots
+- Exclusión mutua sobre un recurso compartido
+- Sincronización mediante bloqueo de esquinas
+- Comunicación y coordinación por pasaje de mensajes
+------------------------------------------------------------------------------}
+
+programa ejercicio5
+procesos
+  proceso juntarP (ES nohay: boolean; ES p : numero)
+  comenzar
+    si HayPapelEnLaEsquina
+      tomarPapel
+      p := p + 1
+    sino 
+      nohay := V
+  fin
+  proceso bloqueo (ES nohay: boolean; E p: numero; E av: numero; E ca: numero)
+  comenzar
+    BloquearEsquina (11,11)
+    Pos(11,11)
+    juntarP (nohay,p)
+    Pos(av,ca)
+    LiberarEsquina (11,11)
+    si (p = 1)
+      depositarPapel
+      si (PosCa <> 100)
+        mover
+  fin
+areas
+  a: AreaP (1,1,1,1)
+  a2: AreaPC (4,1,11,100)
+robots
+  robot tipo1
+  variables
+    id, av, ca, p: numero
+    nohay : boolean
+  comenzar
+    RecibirMensaje (id,coordi)
+    nohay := F
+    p := 0
+    mientras ((nohay = F) & (PosCa < 100))
+      av := PosAv
+      ca := PosCa
+      bloqueo (nohay,p,av,ca)
+    si (PosCa = 100)
+      av := PosAv
+      ca := PosCa
+      bloqueo (nohay,p,av,ca)
+    EnviarMensaje (id,coordi)
+    EnviarMensaje (ca,coordi)
+  fin
+  robot tipo2
+  variables
+    id, ca, r, max : numero
+  comenzar
+    EnviarMensaje (1,r1)
+    EnviarMensaje (2,r2)
+    EnviarMensaje (3,r3)
+    EnviarMensaje (4,r4)
+    max := 0
+    repetir 4
+      RecibirMensaje (id,*)
+      si (id = 1)
+        RecibirMensaje (ca,r1)
+      sino
+        si (id = 2)
+          RecibirMensaje (ca,r2)
+        sino
+          si (id = 3)
+            RecibirMensaje (ca,r3)
+          sino
+            RecibirMensaje (ca,r4)
+      si (ca > max)
+        max := ca
+        r := id
+    Informar ('robot_ganador', r)
+    Informar ('calle', max)
+  fin
+variables
+  r1,r2,r3,r4: tipo1
+  coordi: tipo2
+comenzar
+  AsignarArea (r1,a2)
+  AsignarArea (r2,a2)
+  AsignarArea (r3,a2)
+  AsignarArea (r4,a2)
+  AsignarArea (coordi,a)
+  Iniciar (r1,4,1)
+  Iniciar (r2,6,1)
+  Iniciar (r3,8,1)
+  Iniciar (r4,10,1)
+  Iniciar (coordi,1,1)
+fin
