@@ -1,0 +1,95 @@
+{---------------------------------------------------------------------------------
+Ejercicio: Productores y Consumidores
+
+Este ejercicio implementa el modelo clásico de concurrencia Productor–Consumidor.
+Dos robots Productores recorren sus avenidas recolectando papeles y los depositan
+en una esquina compartida que funciona como buffer.
+
+Dos robots Consumidores intentan retirar una cantidad aleatoria de papeles del
+buffer para llevarlos a su esquina de origen. El acceso al buffer compartido se
+controla mediante bloqueo y liberación de la esquina crítica.
+
+El ejercicio finaliza cuando los Consumidores detectan, tras varios intentos,
+que los Productores han terminado su trabajo. El programa muestra sincronización,
+uso de recursos compartidos y control de concurrencia.
+----------------------------------------------------------------------------------}
+
+programa ejercicio2
+procesos
+  proceso produ (ES cant: numero)
+  variables
+    av, ca: numero
+  comenzar
+    av := PosAv
+    ca := PosCa
+    mientras (HayPapelEnLaEsquina)
+      tomarPapel
+      cant := cant + 1
+      si (cant = 5)
+        BloquearEsquina (50,50)
+        Pos (50,50)
+        repetir 5
+          depositarPapel
+        Pos (av,ca)
+        LiberarEsquina (50,50)
+        cant := 0
+  fin
+  proceso consu (ES p: numero; E cant: numero)
+  variables
+    av, ca: numero
+  comenzar
+    av := PosAv
+    ca := PosCa
+    BloquearEsquina (50,50)
+    Pos (50,50)
+    mientras ((HayPapelEnLaEsquina) & (p < cant))
+      tomarPapel
+      p := p + 1
+    si ((p <> cant) & (p > 0))
+      repetir p
+        depositarPapel
+    Pos (av,ca)
+    LiberarEsquina (50,50)
+  fin
+areas
+  ciudad: AreaC (1,1,100,100)
+robots
+  robot productor
+  variables
+    cant : numero
+  comenzar
+    cant := 0
+    repetir 99
+      produ (cant)
+      mover
+    produ (cant)
+  fin
+  robot consumidor
+  variables
+    cant, intentos, p: numero
+  comenzar
+    intentos := 0
+    mientras (intentos < 8)
+      Random (cant,2,5)
+      p := 0
+      consu (p, cant)
+      si (p = cant)
+        intentos := 0
+        repetir p
+          depositarPapel
+      sino
+        intentos := intentos + 1    
+  fin
+variables
+  p1, p2: productor
+  c1, c2: consumidor
+comenzar
+  AsignarArea (p1,ciudad)
+  AsignarArea (p2,ciudad)
+  AsignarArea (c1,ciudad)
+  AsignarArea (c2,ciudad)
+  Iniciar (p1,5,1)
+  Iniciar (p2,10,1)
+  Iniciar (c1,11,1)
+  Iniciar (c2,12,1)
+fin
