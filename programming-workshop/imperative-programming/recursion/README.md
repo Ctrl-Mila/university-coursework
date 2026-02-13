@@ -1,21 +1,11 @@
 # Recursion – Programming Workshop
 
-This section contains selected recursive programming exercises developed during
-the course **Programming Workshop** (Analista Programador Universitario – UNLP).
-
 The focus is on understanding recursive problem solving, base cases, and
-correct function decomposition.
+correct function decomposition. The covered topics are recursive algorithms, base and recursive cases, 
+and traversal of data structures using recursion.
 
-## 📘 Topics covered
-
-- Recursive algorithms
-- Base and recursive cases
-- Traversal of data structures using recursion
-
-## 🧠 Skills demonstrated
+## Skills 
 
 - Recursive reasoning
 - Problem decomposition
 - Algorithmic thinking
-
-> Exercises are presented in Spanish as part of the original academic coursework.
