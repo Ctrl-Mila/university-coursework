@@ -10,5 +10,3 @@ The selected exercises cover:
 - Master-detail file processing
 - Merge operations
 - Logical deletion and file compaction
-
-The exercises included here were selected to represent the most relevant patterns and algorithms, rather than providing a complete list of academic assignments.
