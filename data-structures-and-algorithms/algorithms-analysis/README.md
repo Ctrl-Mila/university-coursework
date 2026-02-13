@@ -2,14 +2,12 @@
 
 This folder contains a curated set of academic exercises focused on **algorithm analysis**, **time complexity**, and **Big-O notation**.
 
-The goal of this section is not to provide exhaustive theoretical material, but to demonstrate:
-- A solid understanding of asymptotic analysis
+The goal of this section is to demonstrate:
+- Understanding of asymptotic analysis
 - The ability to reason about algorithm efficiency
 - Correct use of Big-O notation
 - Comparison between different algorithmic approaches
 - Identification and implementation of more efficient solutions
-
-All exercises were originally solved in an academic context and later adapted and reorganized to highlight reasoning, clarity, and correctness rather than raw derivations.
 
 ## Contents
 
