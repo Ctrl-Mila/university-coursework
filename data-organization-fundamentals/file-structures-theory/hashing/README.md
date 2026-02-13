@@ -15,11 +15,9 @@ Each exercise includes:
 - A detailed step-by-step solution
 - Visual representations of the structure after each operation
 
----
-
 ## Contents
 
-### 1. Extensible Hashing (Bucket Capacity = 2)
+### Extensible Hashing (Bucket Capacity = 2)
 
 Implementation of the extensible hashing method with:
 
@@ -34,19 +32,3 @@ This exercise includes insertions and deletions, demonstrating:
 - Directory duplication
 - Bucket merges
 - Local and global depth adjustments
-
----
-
-## Learning Objectives
-
-By reviewing these exercises, the reader should understand:
-
-- How extensible hashing dynamically adapts to data growth
-- The relationship between local depth and global depth
-- How directory pointers are updated during splits
-- Conditions required for bucket merging
-- How deletions may reduce structure size
-
----
-
-These exercises were developed as part of academic practice in File Structures and Data Organization.
