@@ -4,8 +4,6 @@ This folder contains selected exercises and practices related to **concurrent pr
 
 The goal of this module is to progressively introduce and apply core concurrency concepts, starting from basic notions and advancing toward classical synchronization models used in real-world problems.
 
-The practices are organized in increasing order of complexity and cover the following topics:
-
 ## Topics covered
 
 - Fundamental concepts of concurrency
@@ -23,11 +21,3 @@ The practices are organized in increasing order of complexity and cover the foll
 Each practice is stored in its own folder and includes:
 - The source files corresponding to the exercises
 - A brief README explaining the objective of the practice and the concepts involved
-
-## Purpose
-
-These exercises were developed for educational purposes, with emphasis on:
-- Correct synchronization
-- Clear structure and naming
-- Progressive complexity
-- Readable and well-documented solutions
