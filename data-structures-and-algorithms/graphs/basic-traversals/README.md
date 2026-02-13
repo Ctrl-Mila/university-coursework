@@ -9,11 +9,6 @@ The goal is to demonstrate how to navigate a graph structure using standard trav
 - **Depth-First Search (DFS)**
 - **Breadth-First Search (BFS)**
 
-These traversals are commonly used to:
-- Visit all vertices in a graph
-- Explore connectivity
-- Serve as a base for path-finding and optimization algorithms
-
 ## Concepts Applied
 
 - Graph representation
