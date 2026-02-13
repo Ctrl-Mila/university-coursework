@@ -4,7 +4,6 @@ This section contains selected exercises developed during the course
 **Programming Workshop** (Analista Programador Universitario – UNLP).
 
 The focus is on fundamental imperative programming concepts implemented in **Pascal**.
----
 
 ## Topics covered
 
@@ -12,8 +11,6 @@ The focus is on fundamental imperative programming concepts implemented in **Pas
 - Recursion
 - Binary search trees
 - Tree traversals and operations
-
----
 
 ## Skills
 
