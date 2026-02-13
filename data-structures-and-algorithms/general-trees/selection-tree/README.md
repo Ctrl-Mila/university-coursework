@@ -1,8 +1,7 @@
 # Selection Tree 
 
 A **selection tree** is a general tree where each node stores the **minimum value among its children**.
-
-Goal -> Determine whether a given general tree satisfies the selection tree property.
+The goal is to determine whether a given general tree satisfies the selection tree property.
 
 ## Solution Approach
 
