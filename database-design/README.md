@@ -3,11 +3,9 @@
 This folder contains selected academic materials developed during the course
 **Database Design** (Analista Programador Universitario – UNLP).
 
-The focus is on practical database modeling and querying.
-
 ---
 
-## 📂 Included materials
+## Included materials
 
 - **Logical and Physical Modeling Practice**  
   Exercises focused on transforming conceptual models into logical and physical
@@ -19,13 +17,9 @@ The focus is on practical database modeling and querying.
 
 ---
 
-## 🧠 Skills demonstrated
+## Skills
 
 - Conceptual, logical and physical database modeling
 - Data analysis and abstraction
 - SQL querying
 - Structured problem-solving
-
----
-
-> Note: Materials are presented in Spanish as part of the original academic coursework.
