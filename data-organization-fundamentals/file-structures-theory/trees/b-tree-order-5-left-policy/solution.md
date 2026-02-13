@@ -2,6 +2,12 @@
 
 ---
 
+## Initial State
+
+![Initial Tree](images/initial-tree.png)
+
+---
+
 ## Operation 1: +320
 
 ### Search Phase
@@ -22,13 +28,13 @@ After insertion:
 
 Split:
 
-- Left node (1): 225, 241
-- Right node (new node 6): 331, 360
-- Promote 320 to parent
+- Left node (1): 225, 241  
+- Right node (new node 6): 331, 360  
+- Promote 320 to parent  
 
 Writes:
-- Node 1
-- Node 6
+- Node 1  
+- Node 6  
 
 ### Propagation to Parent
 
@@ -40,16 +46,20 @@ Insert 320 → overflow:
 
 Split:
 
-- Left node (2): 220, 320
-- Right node (new node 7): 455, 541
-- Promote 390 to new root
+- Left node (2): 220, 320  
+- Right node (new node 7): 455, 541  
+- Promote 390 to new root  
 
 Create new root (node 8).
 
 Writes:
-- Node 2
-- Node 7
-- Node 8
+- Node 2  
+- Node 7  
+- Node 8  
+
+### Resulting Tree
+
+![Step 1 – Insert 320](images/step1-insert-320.png)
 
 ### I/O Summary
 
@@ -77,10 +87,14 @@ Replace with smallest key from right subtree.
 Successor: 400
 
 Rewrite:
-- Node 8 (replace 390 with 400)
-- Node 4 (remove 400)
+- Node 8 (replace 390 with 400)  
+- Node 4 (remove 400)  
 
 Remaining in node 4: 407 → no underflow.
+
+### Resulting Tree
+
+![Step 2 – Delete 390](images/step2-delete-390.png)
 
 ### I/O Summary
 
@@ -115,10 +129,14 @@ Merged node contains:
 Update parent (node 7).
 
 Writes:
-- Node 4
-- Node 5
-- Node 7
-- Node 8 (updated separator)
+- Node 4  
+- Node 5  
+- Node 7  
+- Node 8 (updated separator)  
+
+### Resulting Tree
+
+![Step 3 – Delete 400](images/step3-delete-400.png)
 
 ### I/O Summary
 
@@ -144,9 +162,14 @@ Remove 533 from leaf.
 Node still has valid number of keys → no underflow.
 
 Writes:
-- Node 4
+- Node 4  
+
+### Resulting Tree
+
+![Step 4 – Delete 533](images/step4-delete-533.png)
 
 ### I/O Summary
 
 Reads: 3  
 Writes: 1  
+
