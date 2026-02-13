@@ -1,12 +1,8 @@
 # Water Distribution Network – Minimum Flow 
 
 A potable water distribution network is modeled using a **general tree**, where each node represents a pipe and its children represent its bifurcations.
-
 An initial flow enters through the root pipe and is equally divided among its children. This process continues recursively until reaching leaf nodes, which represent houses.
-
-## Goal
-
-Compute the **minimum flow** received by any house in the network.
+The goal is to compute the **minimum flow** received by any house in the network.
 
 ## Solution Approach
 
