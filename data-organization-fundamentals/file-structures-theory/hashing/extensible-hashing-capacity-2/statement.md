@@ -17,14 +17,14 @@ The directory uses the least significant bits of the hash value.
 
 ## Operations
 
-1. + Darín  
-2. + Alterio  
-3. + Sbaraglia  
-4. + De la Serna  
-5. + Altavista  
-6. + Grandinetti  
-7. - Altavista  
-8. - Sbaraglia  
+1. **+** Darín  
+2. **+** Alterio  
+3. **+** Sbaraglia  
+4. **+** De la Serna  
+5. **+** Altavista  
+6. **+** Grandinetti  
+7. **-** Altavista  
+8. **-** Sbaraglia  
 
 The corresponding hash values are provided in the exercise image.
 
